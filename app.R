@@ -13,18 +13,18 @@ library(leaflet)      # Interactive maps
 library(corrplot)     # Nice correlation matrix
 library(RColorBrewer) # Color brewer
 
-source("C:/Users/smitha.shivakumar/Documents/R/HappinessQuotient/HappineesQuotient-script.R")
+source("HappineesQuotient-script.R")
 
 ui <- dashboardPage(
   dashboardHeader(title = "Happiness Quotient"),
   dashboardSidebar(
     sidebarMenu(
       menuItem("Brief Intro", tabName = NULL, icon = icon("info-circle"),
-               menuSubItem("Intoduction", tabName = "intro", icon = icon("info-circle")),
+               menuSubItem("Intoduction", tabName = "intro", icon = icon("database")),
                menuSubItem("Project Guidelines", tabName ="ProjectGuidelines", icon = icon("stack-overflow")),
                menuSubItem("Context", tabName = "Context", icon = icon("thermometer-full")),
-               menuSubItem("Inspiration", tabName = "Inspiration", icon = icon("users"))
-             #  menuSubItem("Family Satisfaction", tabName = "familySatisfaction", icon = icon("users"))
+               menuSubItem("Inspiration", tabName = "Inspiration", icon = icon("cubes"))
+             
       ),
       menuItem("Dystopia", tabName = "dystopia", icon = icon("tint")),
       
@@ -32,17 +32,18 @@ ui <- dashboardPage(
               menuSubItem("Economy by Regions", tabName = "economy", icon = icon("stack-overflow")),
               menuSubItem("Life Expectancy", tabName = "lifeExpectancy", icon = icon("thermometer-full")),
               menuSubItem("Trust Government Corruption", tabName = "corruption", icon = icon("sign-language")),
-              menuSubItem("Family Satisfaction", tabName = "familySatisfaction", icon = icon("users"))
+              menuSubItem("Family Satisfaction", tabName = "familySatisfaction", icon = icon("users")),
+              menuSubItem("Freedom", tabName = "freedom", icon = icon("blind"))
               ),
       menuItem("Comparisons", tabName = NULL, icon = icon("bars"),
-             menuSubItem("Correlations", tabName = "correlations", icon = icon("lines")),   
-             menuSubItem("GDP", tabName = "GDP", icon = icon("stack-overflow")),
-             menuSubItem("Country Happiness Scores", tabName = "CtryHapScore", icon = icon("sign-language")),
+             menuSubItem("Correlations", tabName = "correlations", icon = icon("delicious")),   
+             menuSubItem("GDP", tabName = "GDP", icon = icon("sitemap")),
+             menuSubItem("Continents' Happiness Scores", tabName = "CtryHapScore", icon = icon("simplybuilt")),
              menuSubItem("Happiness Ratings in Regions", tabName = "ratingsinmap", icon = icon("dashboard")),
-             menuSubItem("Economy vs Life Expectancy", tabName = "ecvsLifeEx", icon = icon("users"))
+             menuSubItem("Economy vs Life Expectancy", tabName = "ecvsLifeEx", icon = icon("heartbeat"))
             ),
-      menuItem("Conclusion", tabName = "Conclusions", icon = icon("hammer")),
-      menuItem("References", tabName = "Bibliography", icon = icon("hammer"))
+      menuItem("Conclusion", tabName = "Conclusions", icon = icon("slideshare")),
+      menuItem("References", tabName = "Bibliography", icon = icon("briefcase"))
     )
   
   ),
@@ -52,54 +53,37 @@ ui <- dashboardPage(
 
       tabItem(tabName = "intro",
               h2("512-90: Final Project Dashboard"),
-              h4("The Happiness Quotient Dashboard is the final project submission by Smitha Shivakumar."),
+              h3("The Happiness Quotient Dashboard is the final project submission by Smitha Shivakumar."),
               h4("This Dashboard talks about the World Happiness Quotient, which is a world survey data collected in 2015 to 2017."), 
               h4("It was one of the Data Science Challenges on Kaggle(https://www.kaggle.com/unsdsn/world-happiness)."),
               h4("This dataset has been taken to conduct various Visualizations to understand the Happiness Quotient in different parts of the country and conduct a comparative
                  analysis on the same."),
-              h4("  
 
-                "),
-               h4("The Brief Intro tab comprises of the Project Guidelines as set by Prof.Alan Hitch, the Context of this data as given on Kaggle and 
+              h3("The Brief Intro tab"),
+               h4("comprises of the Project Guidelines as set by Prof.Alan Hitch, the Context of this data as given on Kaggle and 
                  finally the Inspiration to work on this particular dataset."),
-              h4("  
-
-                 "),
-              h4("  The Dystopia tab talks about how we are setting the benchmark and what exactly it adds to the model. It is informative."),
-              h4("  
-
-                 "),
-              h4("   The Factors tab conducts more of an Univariate Analysis with interactive Scatterplots, giving the user a general idea on what the
+              h3("The Dystopia tab"),
+              h4("talks about how we are setting the benchmark and what exactly it adds to the model. It is informative."),
+              h3("The Factors tab"),
+              h4("conducts more of an Univariate Analysis with interactive Scatterplots, giving the user a general idea on what the
                  data represents."),
-              h4("  
-
-                 "),
-              h4("   The Comparisons tabs have Bivariate Analysis which have World Maps and different violin graphs to give a better representation and 
+              h3("The Comparisons tabs"),
+              h4(" have Bivariate Analysis which have World Maps and different graphs to give a better representation and 
                  understanding of the data."),
-              h4("  
+              h3("The Conclusion tab "),
+              h4("summaries all findings with simple bar charts, comparison charts and regression plots to show how the Happiness Scores have moved across the years and what effects them."),
+              h3("the Reference tab"),
+              h4(" has all the various nooks and corners of the internet I surveyed to help me put this project together."),
 
-                 "),  
 
-              h4("  
-
-                 "),
-              h4("   The Conclusion tab summaries all our findings with simple bar charts to show how the Happiness Scores have moved across the years."),
-              h4("  
-
-                 "),
-              h4("    Finally the Reference tab, has all the various nooks and corners of the internet I surveyed to help me put this project together."),
-
-              h4("  
-
-                 "),
-              h4("  Smitha")
+              h4("-  Smitha")
               ),
       
       tabItem(tabName = "ProjectGuidelines",              
                 title = "Project Guidelines",
 
                    
-                h4("The project must meet certain key objectives:"),
+                h3("Key Objectives:"),
                    
                     h4("1. You must provide an written summary of your data collection, analysis and visualization methods, 
                        including the why you chose your methods, and what tools you utilized."),
@@ -116,15 +100,15 @@ ui <- dashboardPage(
       
       tabItem(tabName = "Context",
                 title = "Context of the Happiness Quotient Project",
-                h4("The World Happiness Report is a landmark survey of the state of global happiness. The 
-                   first report was published in 2012, the second in 2013, the third in 2015, and the fourth 
-                   in the 2016 Update. The World Happiness 2017, which ranks 155 countries by their happiness 
+                h3("The World Happiness Report is a landmark survey of the state of global happiness."),
+                h4("The first report was published in 2012, the second in 2013, the third in 2015, and the fourth 
+                   in the 2016 Update."), h4("The World Happiness 2017, which ranks 155 countries by their happiness 
                    levels, was released at the United Nations at an event celebrating International Day of Happiness
-                   on March 20th. The report continues to gain global recognition as governments, organizations and 
-                   civil society increasingly use happiness indicators to inform their policy-making decisions. 
-                   Leading experts across fields - economics, psychology, survey analysis, national statistics, 
+                   on March 20th."), h4("The report continues to gain global recognition as governments, organizations and 
+                   civil society increasingly use happiness indicators to inform their policy-making decisions."), 
+                   h4("Leading experts across fields - economics, psychology, survey analysis, national statistics, 
                    health, public policy and more - describe how measurements of well-being can be used effectively 
-                   to assess the progress of nations. The reports review the state of happiness in the world today 
+                   to assess the progress of nations."),h4("The reports review the state of happiness in the world today 
                    and show how the new science of happiness explains personal and national variations in happiness.")
              ),
       tabItem(tabName = "Inspiration",
@@ -149,7 +133,7 @@ ui <- dashboardPage(
                   lowest life expectancy, lowest generosity, most corruption, least freedom and least social support, it is referred to as 'Dystopia,
                   in contrast to Utopia."),
              
-             h4("What are the residuals?"),
+             h3("What are the residuals?"),
              h4("  
 
                 "),  
@@ -163,22 +147,28 @@ ui <- dashboardPage(
              h4("  
 
                  "),    
-                h4("What do the columns succeeding the Happiness Score(like Family, Generosity, etc.) describe?"),
+                h3("What do the columns succeeding the Happiness Score(like Family, Generosity, etc.) describe?"),
              h4("  
 
                 "),  
-               h4("The following columns: GDP per Capita, Family, Life Expectancy, Freedom, Generosity, Trust Government Corruption 
-                describe the extent to which these factors contribute in evaluating the happiness in each country. 
+             h4("The following columns: "),
+             h4("GDP per Capita, "),
+             h4("Family, "),
+             h4("Life Expectancy, "),
+             h4("Freedom, "),
+             h4("Generosity, "),
+             h4("Trust Government Corruption"),
+             h4("describe the extent to which these factors contribute in evaluating the happiness in each country. 
                 The Dystopia Residual metric actually is the Dystopia Happiness Score(1.85) + the Residual value or the unexplained 
                 value for each country as stated in the previous answer."),
                 
-              h4("If you add all these factors up, you get the happiness score so it might be un-reliable to model them to predict Happiness Scores.")
+              h4("If all these factors are added up, we might get the happiness score which might be un-reliable to model to predict Happiness Scores as there is multicorrelation.")
              
 
       ),
  
      tabItem(tabName = "ratingsinmap",
-             h2("Ratings by Region"),
+             h2("Happiness Scores by Region"),
            
                box(tabsetPanel(
                  tabPanel("2015",plotlyOutput("boxplot1")),
@@ -188,6 +178,13 @@ ui <- dashboardPage(
                box(
                  title = "Happiness by Regions",
                  h4("Hover on the graph"),
+                 h4("The whole of Australia seems to be on the similar mental space of Happiness."),
+                 h4("However, that is not the case with other regions. Even though Europe has countries 
+                    with happier score than Australia there are countires within Europe which are not happy at all, 
+                    so not an even spectrum of resources in Europe."),
+                 h4("NorthAmerica comes a close second with Australia in the Happiness Score but it too does have a smaller pockets
+                    with not so happy regions. However it doesn't see such a wide gap in resources as in Europe."),
+                 h4("Asia and South America also have a basket of mediocre happiness score. However Africa takes majority of space in the lower spectrum of the Happiness score."),
                  height = 500, width = 700)
      ),
      
@@ -200,7 +197,10 @@ ui <- dashboardPage(
                tabPanel("2017",plotlyOutput("scatterplot3"))
              ), height = 500, width = 700),
              box(
-               h4("Hover on the graph")
+               h4("Hover on the graph"),
+               h4("Europen countries on an overall have higher GDP and higher level of Happiness amongst the other regions."),
+               h4("African countries on the other hand have lower GDP and lesser levels of Happiness."),
+               h4("So we do see there is a certain amount of correlation between the GDP and Happiness Quotient.")
                , height = 500, width = 700)
      ),
      
@@ -213,7 +213,10 @@ ui <- dashboardPage(
                tabPanel("2017",plotlyOutput("LEscatterplot3"))
              ), height = 500, width = 700),
              box(
-               h4("Hover on the graph")
+               h4("Hover on the graph"),
+               h4("Europe and North American countries on the overall have higher Life Expectancy and higher level of Happiness amongst the other regions."),
+               h4("Africa and some Asian countries on the other hand have lower Life Expectancy and lesser level of Happiness."),
+               h4("So we do see there is a relation between the Life Expectancy and Happiness Quotient. Or is it because they are happy, they live longer?")
                , height = 500, width = 700)
      ),
      
@@ -226,7 +229,10 @@ ui <- dashboardPage(
                tabPanel("2017",plotlyOutput("GCRscatterplot3"))
              ), height = 500, width = 700),
              box(
-               h4("Hover on the graph")
+               h4("Hover on the graph"),
+               h4("Europe and North American countries on the overall have higher Trust in Government Corruption and higher level of Happiness amongst the other regions."),
+               h4("Africa and some Asian countries on the other hand have lower Trust in Government Corruption and lesser level of Happiness."),
+               h4("So we do see there is a relation between the Trust in Government Corruption and Happiness Quotient.")
                , height = 500, width = 700)
      ),
      
@@ -239,16 +245,45 @@ ui <- dashboardPage(
                tabPanel("2017",plotlyOutput("FSscatterplot3"))
              ), height = 500, width = 700),
              box(
-               h4("Hover on the graph")
+               h4("Hover on the graph"),
+               h4("Europe and North American countries on the overall have higher Family Satisfaction and higher level of Happiness amongst the other regions."),
+               h4("Africa and some Asian countries on the other hand have lower Family Satisfaction and lesser level of Happiness."),
+               h4("So we do see there is a relation between the Family Satisfaction and Happiness Quotient."),
+               h4(" This makes us curious to find to what levels are each of these factors related, so moving to the next section of Comparisons.")
                , height = 500, width = 700)
      ),
+     
+     tabItem(tabName = "freedom",
+             title = "Happiness vs Freedom by Regions",
+             h2("Freedom"),
+             box(tabsetPanel(
+               tabPanel("2015",plotlyOutput("Freescatterplot1")),
+               tabPanel("2016",plotlyOutput("Freescatterplot2")),
+               tabPanel("2017",plotlyOutput("Freescatterplot3"))
+             ), height = 500, width = 700),
+             box(
+               h4("Hover on the graph"),
+               h4("Europe and North American countries on the overall have higher Freedom and higher level of Happiness amongst the other regions."),
+               h4("Africa and some Asian countries on the other hand have lower Freedom and lesser level of Happiness."),
+               h4("So we do see there is a relation between the Freedom and Happiness Quotient."),
+               h4(" This makes us curious to find to what levels are each of these factors related, so moving to the next section of Comparisons.")
+               , height = 500, width = 700)
+     ),
+     
      tabItem(tabName = "correlations",
              title = "Correlation Plot",
              box(tabsetPanel(
                tabPanel("2015",plotOutput("Corrplot1")),
                tabPanel("2016",plotOutput("Corrplot2")),
                tabPanel("2017",plotOutput("Corrplot3"))
-             ), height = 500, width = 700)
+             ), height = 500, width = 700),
+             box(
+               h4("Correlation Plots"),
+               h4("In all the three years we see that there is a strong correlation with the Economy GDP per Capita and Happiness."),
+               h4("Family Satisfaction and Life Expectancy come a close second with a more pronounced correlation in 2017"),
+               h4("Freedom comes third with having a correlation of in and around 0.5"),
+               h4("Trust in Governement Corruption and Genorisity have very low correlation to the Happiness Score.")
+               , height = 500, width = 700)
              ),
      
      tabItem(tabName = "GDP",
@@ -260,18 +295,28 @@ ui <- dashboardPage(
              ), height = 500, width = 600),
              box(
                title = "GDP Plot",
-               h4("This Map Plot takes 3seconds to load.")
+               h4("This Map Plot takes 5 seconds to load."),
+               h4("This Map Plot shows the GDP of each country in the world and it is on a scale from 0 to 1.69. "),
+               h4("The countries with 0 GDP rating are the countires we have no data for. The current dataset has data for 153 countries on the avergae over 3 years and don't have data from 88 countries in the world"),
+               h4("United States, Canada, Australia, Switzerland, Finalnd and Qatar have been consistently the front runner with higher GDP per capita."),
+               h4("Russia and some on the other European countries have degraded from high GDP to not so well, over the years from 2015-2017.")               
                , height = 500, width = 700)
              ),
 
      
      tabItem(tabName = "CtryHapScore",
-             title = "Country Happiness Plot",
+             title = "Continent Happiness Plot",
              box(tabsetPanel(
                tabPanel("2015",plotOutput("CtryHapplot1")),
                tabPanel("2016",plotOutput("CtryHapplot2")),
                tabPanel("2017",plotOutput("CtryHapplot3"))
-             ), height = 600, width = 700)
+             ), height = 600, width = 700),
+             box(
+               title = "Happiness in Continents",
+               h4("Countries in United States have the highest Trust in the Government Corruption, Africa comes second with their Trust in Government Corruption."),
+               h4("However, this trust doesn't translate into Happiness because Europe turns out to be the Happiest Region amongst all and Africa seems to be the least happiest region."),
+               h4("This proves our correlation plot where we found that Trust in Government has a very weak realtion with the region's happiness.")               
+               , height = 500, width = 700)
              
                
              ),
@@ -281,7 +326,15 @@ ui <- dashboardPage(
                tabPanel("2015",plotOutput("ecvsLifeExplot1")),
                tabPanel("2016",plotOutput("ecvsLifeExplot2")),
                tabPanel("2017",plotOutput("ecvsLifeExplot3"))
-             ), height = 500, width = 700)
+             ), height = 500, width = 700),
+             box(
+               title = "Economy vs Life Expectancy",
+               h4("Singapore is at the peak of this chart with the high Life Expectancy and GDP per Capita "),
+               h4("Qatar is certainly a cut above the rest with highest GDP per capita however that doesn't seem to show with their Life Expectancy."),
+               h4("Hongkong has been a constant neighbor to Singapore and sometimes(2016) sharing the  high Life Expectancy and GDP combination with Singapore"),
+               h4("Sierra Leono has remained at the bottom of this chart with the lowest Life Expectancy and GDP per Capita "),
+               h4("Other African countires like Lesotho and Chad have slid into the lower region of Life Expectancy and GDP per Capita")
+               , height = 500, width = 700)
              
      ),
      
@@ -299,9 +352,13 @@ ui <- dashboardPage(
                ), height = 600, width = 700),
              box(
                title = "Conclusion",
-               h4("From the analysis we see that the Happiness Quotient has been increasing over the years and the factors 
-                  add upto the Happiness Score as seen in the Regression Plot. Overall, we have answered each of our 5 main 
-                  questions and on the way found more realtions in the dataset.")
+               h4("From the graphs above it is seen that the countries with top Happiness Scores have just shuffled around and stayed happy int eh time frame we checked."),
+               h4("Similarly for the Lower Happier COuntries. However we do see the names of countries having lower happiness score are the ones which have terrorist attacks on them more often than anyone would like."),
+               h4("From the analysis we see that the there has been a slight increase in the Happiness Quotient over the years. People all around the world have the general idea to move towards 
+                  prosperity and as we saw Economy GDP per capita seem to have the highest impact on the Happiness Score."),
+               h4("The regression plots for each factor vs the Happiness Score can be seen and it stengthes our correlation plots with statistical numbers."),
+               h4("Overall, in the process of answering the 5 main questions, a lot more realities about the dataset have been explored."),
+               h4("Next step to this would be to check the effects of terrorist attacks on the World welfare and more tuned towards making this analysis helpful towards social welfare awareness")
                , height = 500, width = 700)
                
 
@@ -669,6 +726,65 @@ server <- function(input, output) {
     p  
   }) 
   
+  ################################################################################################################
+  #################### Happiness vs Freedom ##############################################################
+  
+  output$Freescatterplot1 <- renderPlotly({
+    p <-    plot_ly(data=happy.2015,x=~Happiness.Score,
+                    y=~Freedom,
+                    color=~Region,
+                    type="scatter", mode = "markers",
+                    marker = list(size = 15),
+                    # Hover text:
+                    text = ~paste("<b>Region:</b> ", Region, 
+                                  "<br><b>Country:</b> ", Country,
+                                  "<br><b>Happiness Score:</b>", Happiness.Score,
+                                  "<br><b>Freedom:</b>", Freedom)) %>%
+      layout(xaxis=list(title="Happiness Score"),
+             yaxis=list(title="Freedom"))
+    
+    p$elementId <- NULL
+    p  
+  })
+  
+  output$Freescatterplot2 <- renderPlotly({
+    p <-    plot_ly(data=happy.2016,x=~Happiness.Score,
+                    y=~Freedom,
+                    color=~Region,
+                    type="scatter", mode = "markers",
+                    marker = list(size = 15),
+                    # Hover text:
+                    text = ~paste("<b>Region:</b> ", Region, 
+                                  "<br><b>Country:</b> ", Country,
+                                  "<br><b>Happiness Score:</b>", Happiness.Score,
+                                  "<br><b>Freedom:</b>", Freedom)) %>%
+      layout(xaxis=list(title="Happiness Score"),
+             yaxis=list(title="Freedom"))
+    
+    p$elementId <- NULL
+    p  
+  })
+  
+  output$Freescatterplot3 <- renderPlotly({
+    p <-    plot_ly(data=happy.2017,x=~Happiness.Score,
+                    y=~Freedom,
+                    color=~Region,
+                    type="scatter", mode = "markers",
+                    marker = list(size = 15),
+                    # Hover text:
+                    text = ~paste("<b>Region:</b> ", Region, 
+                                  "<br><b>Country:</b> ", Country,
+                                  "<br><b>Happiness Score:</b>", Happiness.Score,
+                                  "<br><b>Freedom:</b>", Freedom)) %>%
+      layout(xaxis=list(title="Happiness Score"),
+             yaxis=list(title="Freedom"))
+    p$elementId <- NULL
+    p  
+  })
+  
+  
+  
+  
  ################################################################################################################
   #################### Ratings In Maps ##########################################################################
   output$RatingsInMaps1 <- renderPlot({
@@ -802,6 +918,16 @@ server <- function(input, output) {
     grid.arrange(gg1,gg2,gg3,gg4,gg5,gg6,gg7,gg8,ncol=2,nrow=4)
   })
 
+  # tryCatch({
+  #   # some other code
+  # }, warning = function(war){
+  #   logwarn(war, logger = "MyLogger")
+  # }, error = function(err){
+  #   # edit the error message
+  #   err$message <- paste("While training model", err, sep = " ")
+  #   # and re-raise
+  #   stop(err)
+  # })
   
   }
 
